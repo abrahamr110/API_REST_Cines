@@ -42,11 +42,4 @@ public class SesionController {
     ) {
         return ResponseEntity.ok(sesionService.updateSesion(sesionDTO));
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<SesionDTO> deleteSesion(
-        @PathVariable Long id
-    ) {
-        return ResponseEntity.ok(sesionService.deleteSesion(id));
-    }
 }

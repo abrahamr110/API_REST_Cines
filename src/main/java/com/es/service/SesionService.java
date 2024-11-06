@@ -60,17 +60,32 @@ public class SesionService {
 
     public SesionDTO updateSesion(SesionDTO sesionDTO){
         Sesion sesion=sesionRepository.findAll().get(0);
+        Pelicula pelicula=new Pelicula();
 
-        if(sesion == null){
+        if(sesion != null){
             sesion.setId(sesionDTO.getId());
-            sesion.setPelicula(sesion.getPelicula());
+            pelicula.setId(sesionDTO.getMovieId());
+            sesion.setPelicula(pelicula);
             sesion.setRoomId(sesionDTO.getRoomId());
             sesion.setDate(sesionDTO.getDate());
 
             sesionRepository.save(sesion);
 
             return sesionDTO;
+        }else{
+            return null;
         }
-        return null;
+
+    }
+
+    public SesionDTO deleteSesion(Long id){
+        Sesion sesion=sesionRepository.findAll().get(0);
+
+        if(sesion!=null){
+            sesionRepository.delete(sesion);
+            return mapToDTO(sesion);
+        }else{
+            return null;
+        }
     }
 }
