@@ -33,4 +33,10 @@ public class PeliculaController {
             @RequestBody PeliculaDTO peliculaDTO) {
         return ResponseEntity.ok(peliculaService.createPelicula(peliculaDTO));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PeliculaDTO> updatePelicula(
+            @RequestBody PeliculaDTO peliculaDTO, @PathVariable Long id) {
+        return ResponseEntity.ok(peliculaService.updatePelicula(peliculaDTO, id));
+    }
 }

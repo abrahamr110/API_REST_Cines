@@ -14,6 +14,21 @@ public class PeliculaService {
     public PeliculaService(PeliculaRepository peliculaRepository) {
         this.peliculaRepository = peliculaRepository;
     }
+
+    private PeliculaDTO mapToDTO(Pelicula pelicula) {
+        PeliculaDTO peliculaDTO = new PeliculaDTO();
+        peliculaDTO.setId(pelicula.getId());
+        peliculaDTO.setTitle(pelicula.getTitle());
+        peliculaDTO.setDirector(pelicula.getDirector());
+        peliculaDTO.setTime(pelicula.getTime());
+        peliculaDTO.setTrailer(pelicula.getTrailer());
+        peliculaDTO.setPosterImage(pelicula.getPosterImage());
+        peliculaDTO.setScreenshot(pelicula.getScreenshot());
+        peliculaDTO.setSynopsis(pelicula.getSynopsis());
+        peliculaDTO.setRating(pelicula.getRating());
+        return peliculaDTO;
+    }
+
     public PeliculaDTO getAll(){
         Pelicula pelicula = peliculaRepository.findAll().get(0);
         return mapToDTO(pelicula);
@@ -48,17 +63,20 @@ public class PeliculaService {
         return mapToDTO(pelicula);
     }
 
-    private PeliculaDTO mapToDTO(Pelicula pelicula) {
-        PeliculaDTO peliculaDTO = new PeliculaDTO();
-        peliculaDTO.setId(pelicula.getId());
-        peliculaDTO.setTitle(pelicula.getTitle());
-        peliculaDTO.setDirector(pelicula.getDirector());
-        peliculaDTO.setTime(pelicula.getTime());
-        peliculaDTO.setTrailer(pelicula.getTrailer());
-        peliculaDTO.setPosterImage(pelicula.getPosterImage());
-        peliculaDTO.setScreenshot(pelicula.getScreenshot());
-        peliculaDTO.setSynopsis(pelicula.getSynopsis());
-        peliculaDTO.setRating(pelicula.getRating());
-        return peliculaDTO;
+    public PeliculaDTO updatePelicula(PeliculaDTO peliculaDTO, Long id) {
+        Pelicula pelicula=peliculaRepository.findById(id).orElse(null);
+        if(pelicula != null){
+            pelicula.setTitle(peliculaDTO.getTitle());
+            pelicula.setDirector(peliculaDTO.getDirector());
+            pelicula.setTime(peliculaDTO.getTime());
+            pelicula.setTrailer(peliculaDTO.getTrailer());
+            pelicula.setPosterImage(peliculaDTO.getPosterImage());
+            pelicula.setScreenshot(peliculaDTO.getScreenshot());
+            pelicula.setSynopsis(peliculaDTO.getSynopsis());
+            pelicula.setRating(peliculaDTO.getRating());
+            return mapToDTO(peliculaRepository.save(pelicula));
+        }else{
+            return null;
+        }
     }
 }
