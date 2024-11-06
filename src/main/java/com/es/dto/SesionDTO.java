@@ -8,6 +8,9 @@ public class SesionDTO {
     private Long roomId;
     private LocalDate date;
 
+    //Constructor vacío
+    public SesionDTO() {}
+
     //Constructor con parámetros
     public SesionDTO(Long movieId, Long roomId, LocalDate date) {
         this.movieId = movieId;
