@@ -1,6 +1,7 @@
 package com.es.entities;
 
 import jakarta.persistence.*;
+
 @Entity
 public class Pelicula {
 
