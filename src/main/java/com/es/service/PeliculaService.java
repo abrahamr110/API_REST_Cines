@@ -79,4 +79,14 @@ public class PeliculaService {
             return null;
         }
     }
+
+    public PeliculaDTO deletePelicula(Long id) {
+        Pelicula pelicula=peliculaRepository.findById(id).orElse(null);
+        if(pelicula != null){
+            peliculaRepository.delete(pelicula);
+            return mapToDTO(pelicula);
+        }else{
+            return null;
+        }
+    }
 }

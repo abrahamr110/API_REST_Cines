@@ -39,9 +39,4 @@ public class PeliculaController {
             @RequestBody PeliculaDTO peliculaDTO, @PathVariable Long id) {
         return ResponseEntity.ok(peliculaService.updatePelicula(peliculaDTO, id));
     }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<PeliculaDTO> deletePelicula(@PathVariable Long id) {
-        return ResponseEntity.ok(peliculaService.deletePelicula(id));
-    }
 }
