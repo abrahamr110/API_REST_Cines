@@ -40,11 +40,9 @@ public class PeliculaService {
     }
 
     public PeliculaDTO getByMinRating(Double minRating){
-        if(minRating!=null && minRating > 0 ){
-            for(Pelicula pelicula : peliculaRepository.findAll()){
-                if(pelicula.getRating() > minRating){
-                    return mapToDTO(pelicula);
-                }
+        for(Pelicula pelicula : peliculaRepository.findAll()){
+            if(pelicula.getRating() > minRating){
+                return mapToDTO(pelicula);
             }
         }
         return null;
