@@ -2,11 +2,9 @@ package com.es.controller;
 
 import com.es.dto.SesionDTO;
 import com.es.service.SesionService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -29,5 +27,19 @@ public class SesionController {
         @RequestParam LocalDate hoy
     ) {
         return ResponseEntity.ok(sesionService.getToday(hoy));
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<SesionDTO> addSesion(
+        @RequestBody SesionDTO sesionDTO
+    ) {
+        return ResponseEntity.ok(sesionService.addSesion(sesionDTO));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<SesionDTO> updateSesion(
+        @RequestBody SesionDTO sesionDTO
+    ) {
+        return ResponseEntity.ok(sesionService.updateSesion(sesionDTO));
     }
 }

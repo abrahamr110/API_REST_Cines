@@ -42,4 +42,35 @@ public class SesionService {
         }
         return null;
     }
+
+    public SesionDTO addSesion(SesionDTO sesionDTO){
+        Sesion sesion= new Sesion();
+        Pelicula pelicula=new Pelicula();
+
+        pelicula.setId(sesionDTO.getMovieId());
+        sesion.setPelicula(pelicula);
+        sesion.setId(sesionDTO.getId());
+        sesion.setRoomId(sesionDTO.getRoomId());
+        sesion.setDate(sesionDTO.getDate());
+
+        sesionRepository.save(sesion);
+
+        return sesionDTO;
+    }
+
+    public SesionDTO updateSesion(SesionDTO sesionDTO){
+        Sesion sesion=sesionRepository.findAll().get(0);
+
+        if(sesion == null){
+            sesion.setId(sesionDTO.getId());
+            sesion.setPelicula(sesion.getPelicula());
+            sesion.setRoomId(sesionDTO.getRoomId());
+            sesion.setDate(sesionDTO.getDate());
+
+            sesionRepository.save(sesion);
+
+            return sesionDTO;
+        }
+        return null;
+    }
 }
