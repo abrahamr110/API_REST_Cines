@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootWar
+
 plugins {
 	java
 	war
@@ -33,3 +35,13 @@ dependencies {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+tasks.withType<BootWar> {
+	archiveBaseName.set("API_REST_Cines") // Nombre para el archivo .war
+	archiveVersion.set("1.0.0")  // Ajusta la versión si es necesario
+	manifest {
+		attributes(
+			"Main-Class" to "com.es.DiecinesApplication" // Cambia "TuClasePrincipal" a la clase principal de tu aplicación
+		)
+	}
+}
+
