@@ -35,5 +35,13 @@ dependencies {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
-
+tasks.withType<BootWar> {
+	archiveBaseName.set("API_REST_Cines")
+	archiveVersion.set("1.0.0")  // Ajusta la versión si es necesario
+	manifest {
+		attributes(
+			"Main-Class" to "com.es.DiecinesApplication"
+		)
+	}
+}
 
